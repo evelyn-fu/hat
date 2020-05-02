@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Realtime;
-using Photon.Pun;
 
 public class CreateRoom : MonoBehaviour
 {
@@ -37,8 +36,4 @@ public class CreateRoom : MonoBehaviour
         print("Room created successfully");
     }
 
-    private void OnCreateRoomFailed(short returnCode, string message)
-    {
-        print(message);
-    }
 }

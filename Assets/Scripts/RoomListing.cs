@@ -35,9 +35,10 @@ public class RoomListing : MonoBehaviour
         Button button = GetComponent<Button>();
         button.onClick.RemoveAllListeners();
     }
-
+    
     public void SetRoomNameText(string text)
     {
+        print("roomnametext call");
         RoomName = text;
         RoomNameText.text = RoomName;
     }

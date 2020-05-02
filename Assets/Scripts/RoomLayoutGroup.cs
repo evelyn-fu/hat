@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Photon.Realtime;
 
-public class RoomLayoutGroup : MonoBehaviourPunCallbacks
+public class RoomLayoutGroup : MonoBehaviour
 {
     [SerializeField]
     private GameObject _roomListingPrefab;
@@ -15,21 +14,16 @@ public class RoomLayoutGroup : MonoBehaviourPunCallbacks
 
     private List<RoomListing> _roomListingButtons = new List<RoomListing>();
 
-    private List<RoomInfo> rooms = new List<RoomInfo>();
-
     private List<RoomListing> RoomListingButtons
     {
         get { return _roomListingButtons; }
     }
 
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        rooms = roomList;
-    }
-
     private void OnRecievedRoomListUpdate()
     {
-        foreach(RoomInfo room in rooms)
+        RoomInfo[] rooms = PhotonNetwork.GetRoomList();
+        print("size: " + rooms.Length);
+        foreach (RoomInfo room in rooms)
         {
             RoomRecieved(room);
         }
@@ -40,11 +34,12 @@ public class RoomLayoutGroup : MonoBehaviourPunCallbacks
     private void RoomRecieved(RoomInfo room)
     {
         int index = RoomListingButtons.FindIndex(x => x.RoomName == room.Name);
-
-        if(index == -1)
+        
+        if (index == -1)
         {
-            if(room.IsVisible && room.PlayerCount < room.MaxPlayers)
+            if (room.IsVisible && room.PlayerCount < room.MaxPlayers)
             {
+                print("instantiating");
                 GameObject roomListingObj = Instantiate(RoomListingPrefab);
                 roomListingObj.transform.SetParent(transform, false);
 
@@ -55,7 +50,7 @@ public class RoomLayoutGroup : MonoBehaviourPunCallbacks
             }
         }
 
-        if(index != -1)
+        if (index != -1)
         {
             RoomListing roomListing = RoomListingButtons[index];
             roomListing.SetRoomNameText(room.Name);
@@ -67,7 +62,7 @@ public class RoomLayoutGroup : MonoBehaviourPunCallbacks
     {
         List<RoomListing> removeRooms = new List<RoomListing>();
 
-        foreach(RoomListing roomListing in RoomListingButtons)
+        foreach (RoomListing roomListing in RoomListingButtons)
         {
             if (roomListing.Updated)
             {
@@ -77,7 +72,7 @@ public class RoomLayoutGroup : MonoBehaviourPunCallbacks
                 roomListing.Updated = false;
         }
 
-        foreach(RoomListing roomListing in removeRooms)
+        foreach (RoomListing roomListing in removeRooms)
         {
             GameObject roomListingObj = roomListing.gameObject;
             RoomListingButtons.Remove(roomListing);
