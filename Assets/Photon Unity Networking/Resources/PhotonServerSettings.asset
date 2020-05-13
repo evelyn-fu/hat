@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3758f8f58fdef43803eb9be1df0608, type: 3}
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
-  AppID: 4b8f9e4a-991e-4345-8eca-12658239d910
+  AppID: 895a7a38-4665-435c-8b75-40a2805b7e5e
   VoiceAppID: 
   ChatAppID: ce954e41-3d61-4d81-90db-c053a2114bfa
   HostType: 1
@@ -22,7 +22,7 @@ MonoBehaviour:
   ServerAddress: 
   ServerPort: 5055
   VoiceServerPort: 5055
-  JoinLobby: 0
+  JoinLobby: 1
   EnableLobbyStatistics: 0
   PunLogging: 0
   NetworkLogging: 1

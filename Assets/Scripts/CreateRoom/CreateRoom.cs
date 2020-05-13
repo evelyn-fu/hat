@@ -19,11 +19,13 @@ public class CreateRoom : MonoBehaviour
 
         if (PhotonNetwork.CreateRoom(RoomName.text, roomOptions, TypedLobby.Default)){
             print("create room successsfully sent.");
+            PhotonNetwork.JoinLobby(TypedLobby.Default);
         }
         else
         {
             print("create room failed to send");
         }
+        print("asdflasdfjasdf");
     }
 
     private void OnPhotonCreateRoomFailed(object[] codeAndMessage)
@@ -34,6 +36,8 @@ public class CreateRoom : MonoBehaviour
     private void OnCreatedRoom()
     {
         print("Room created successfully");
+        PhotonNetwork.JoinLobby(TypedLobby.Default);
+        print("inside libby " + PhotonNetwork.insideLobby);
     }
 
 }

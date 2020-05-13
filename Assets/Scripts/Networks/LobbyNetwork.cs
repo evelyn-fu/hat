@@ -15,7 +15,7 @@ public class LobbyNetwork : MonoBehaviour
     private void OnConnectedToMaster()
     {
         print("Connected to master.");
-        PhotonNetwork.playerName = PlayerNetwork.Instance.PlayerName;
+        print("Nmae: " + PlayerNetwork.Instance.PlayerName);
 
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
@@ -23,5 +23,9 @@ public class LobbyNetwork : MonoBehaviour
     private void OnJoinedLobby()
     {
         print("Joined lobby.");
+
+        PhotonNetwork.playerName = PlayerNetwork.Instance.PlayerName;
+        if (!PhotonNetwork.inRoom)
+            MainCanvasManager.Instance.LobbyCanvas.transform.SetAsLastSibling();
     }
 }

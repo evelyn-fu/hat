@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Photon.Realtime;
 
 public class RoomLayoutGroup : MonoBehaviour
 {
@@ -13,33 +11,31 @@ public class RoomLayoutGroup : MonoBehaviour
     }
 
     private List<RoomListing> _roomListingButtons = new List<RoomListing>();
-
     private List<RoomListing> RoomListingButtons
     {
         get { return _roomListingButtons; }
     }
 
-    private void OnRecievedRoomListUpdate()
+    private void OnReceivedRoomListUpdate()
     {
         RoomInfo[] rooms = PhotonNetwork.GetRoomList();
-        print("size: " + rooms.Length);
+
         foreach (RoomInfo room in rooms)
         {
-            RoomRecieved(room);
+            RoomReceived(room);
         }
 
         RemoveOldRooms();
     }
 
-    private void RoomRecieved(RoomInfo room)
+    private void RoomReceived(RoomInfo room)
     {
         int index = RoomListingButtons.FindIndex(x => x.RoomName == room.Name);
-        
+
         if (index == -1)
         {
             if (room.IsVisible && room.PlayerCount < room.MaxPlayers)
             {
-                print("instantiating");
                 GameObject roomListingObj = Instantiate(RoomListingPrefab);
                 roomListingObj.transform.SetParent(transform, false);
 
@@ -64,10 +60,8 @@ public class RoomLayoutGroup : MonoBehaviour
 
         foreach (RoomListing roomListing in RoomListingButtons)
         {
-            if (roomListing.Updated)
-            {
+            if (!roomListing.Updated)
                 removeRooms.Add(roomListing);
-            }
             else
                 roomListing.Updated = false;
         }
@@ -79,5 +73,4 @@ public class RoomLayoutGroup : MonoBehaviour
             Destroy(roomListingObj);
         }
     }
-
 }
