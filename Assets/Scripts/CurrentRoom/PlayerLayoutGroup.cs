@@ -34,12 +34,12 @@ public class PlayerLayoutGroup : MonoBehaviour
         }
     }
 
-    private void OnPhotonPlayerConnected(PhotonPlayer photonPlayer)
+    private void onPhotonPlayerConnected(PhotonPlayer photonPlayer)
     {
         PlayerJoinedRoom(photonPlayer);
     }
 
-    private void OnPhotonPlayerDisconnected(PhotonPlayer photonPlayer)
+    private void onPhotonPlayerDisconnected(PhotonPlayer photonPlayer)
     {
         PlayerLeftRoom(photonPlayer);
     }
