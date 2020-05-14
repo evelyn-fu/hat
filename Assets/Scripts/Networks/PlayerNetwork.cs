@@ -16,6 +16,9 @@ public class PlayerNetwork : MonoBehaviour
         PhotonView = GetComponent<PhotonView>();
         PlayerName = "Steve#" + Random.Range(1000, 9999);
 
+        PhotonNetwork.sendRate = 60;
+        PhotonNetwork.sendRateOnSerialize = 30;
+
         SceneManager.sceneLoaded += OnSceneFinishedLoading;
     }
 

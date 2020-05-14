@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : Photon.MonoBehaviour
 {
     private PhotonView PhotonView;
+    private Vector3 TargetPosition;
+    private Quaternion TargetRotation;
 
     private void Awake()
     {
@@ -14,9 +16,32 @@ public class PlayerMovement : Photon.MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(PhotonView.isMine)
+        if (PhotonView.isMine)
             checkInput();
+        else
+            SmoothMove();
     }
+
+    private void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if(stream.isWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(transform.rotation);
+        }
+        else
+        {
+            TargetRotation = (Quaternion)stream.ReceiveNext();
+            TargetPosition = (Vector3)stream.ReceiveNext();
+        }
+    }
+
+    private void SmoothMove()
+    {
+        transform.position = Vector3.Lerp(transform.position, TargetPosition, 0.25f);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, TargetRotation, 500 + Time.deltaTime);
+    }
+
     private void checkInput()
     {
         float moveSpeed = 50f;
