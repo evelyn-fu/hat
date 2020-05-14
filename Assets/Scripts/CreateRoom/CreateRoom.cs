@@ -19,7 +19,7 @@ public class CreateRoom : MonoBehaviour
 
         if (PhotonNetwork.CreateRoom(RoomName.text, roomOptions, TypedLobby.Default)){
             print("create room successsfully sent.");
-            //PhotonNetwork.JoinLobby(TypedLobby.Default);
+            PhotonNetwork.JoinLobby(TypedLobby.Default);
         }
         else
         {
@@ -36,8 +36,7 @@ public class CreateRoom : MonoBehaviour
     private void OnCreatedRoom()
     {
         print("Room created successfully");
-        //PhotonNetwork.JoinLobby(TypedLobby.Default);
-        //PhotonNetwork.automaticallySyncScene = true;
+        PhotonNetwork.JoinLobby(TypedLobby.Default);
         print("inside lobby " + PhotonNetwork.insideLobby);
     }
 
