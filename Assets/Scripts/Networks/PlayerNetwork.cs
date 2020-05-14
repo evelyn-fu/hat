@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,12 +32,12 @@ public class PlayerNetwork : MonoBehaviour
 
     private void MasterLoadedGame()
     {
+        PhotonView.RPC("RPC_LoadedGameScene", PhotonTargets.MasterClient);
         PhotonView.RPC("RPC_LoadGameOthers", PhotonTargets.Others);
     }
 
     private void NonMasterLoadedGame()
     {
-        PlayersInGame = 1;
         PhotonView.RPC("RPC_LoadedGameScene", PhotonTargets.MasterClient);
     }
 
@@ -53,6 +54,14 @@ public class PlayerNetwork : MonoBehaviour
         if(PlayersInGame == PhotonNetwork.playerList.Length)
         {
             print("All players are in game scene");
+            PhotonView.RPC("RPC_CreatePlayer", PhotonTargets.All);
         }
+    }
+
+    [PunRPC]
+    private void RPC_CreatePlayer()
+    {
+        float randomValue = Random.Range(0f, 5f);
+        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), Vector3.forward * randomValue, Quaternion.identity, 0);
     }
 }
