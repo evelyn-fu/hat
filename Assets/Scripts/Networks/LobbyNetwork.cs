@@ -26,6 +26,7 @@ public class LobbyNetwork : MonoBehaviour
         print("Joined lobby.");
 
         PhotonNetwork.playerName = PlayerNetwork.Instance.PlayerName;
+        PhotonNetwork.automaticallySyncScene = true;
         if (!PhotonNetwork.inRoom)
             MainCanvasManager.Instance.LobbyCanvas.transform.SetAsLastSibling();
     }

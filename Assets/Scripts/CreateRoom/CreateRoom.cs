@@ -37,6 +37,7 @@ public class CreateRoom : MonoBehaviour
     {
         print("Room created successfully");
         PhotonNetwork.JoinLobby(TypedLobby.Default);
+        PhotonNetwork.automaticallySyncScene = true;
         print("inside libby " + PhotonNetwork.insideLobby);
     }
 
