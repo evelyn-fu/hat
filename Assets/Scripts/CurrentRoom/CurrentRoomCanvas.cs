@@ -4,9 +4,14 @@ public class CurrentRoomCanvas : MonoBehaviour
 {
     public void OnClickStartSync()
     {
-        print("LOADLEVEL CALLED");
-        if (PhotonNetwork.automaticallySyncScene)
-            print("true");
+
+        PhotonNetwork.LoadLevel(1);
+    }
+
+    public void OnClickStartDelayed()
+    {
+        PhotonNetwork.room.IsOpen = false;
+        PhotonNetwork.room.IsVisible = false;
         PhotonNetwork.LoadLevel(1);
     }
 }
