@@ -20,6 +20,11 @@ public class PlayerLayoutGroup : MonoBehaviour
 
     private void OnJoinedRoom()
     {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
         MainCanvasManager.Instance.CurrentRoomCanvas.transform.SetAsLastSibling();
 
         PhotonPlayer[] photonPlayers = PhotonNetwork.playerList;

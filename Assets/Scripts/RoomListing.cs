@@ -13,7 +13,7 @@ public class RoomListing : MonoBehaviour
     }
 
     public string RoomName { get; private set; }
-
+    
     public bool Updated { get; set; }
     // Start is called before the first frame update
     private void Start()
@@ -27,14 +27,18 @@ public class RoomListing : MonoBehaviour
         LobbyCanvas lobbyCanvas = LobbyCanvasObject.GetComponent<LobbyCanvas>();
 
         Button button = GetComponent<Button>();
-
+        if (button == null)
+        {
+            print("button is null");
+        }
         button.onClick.AddListener(() => lobbyCanvas.OnClickJoinRoom(RoomNameText.text));
     }
 
     private void OnDestroy()
     {
         Button button = GetComponent<Button>();
-        button.onClick.RemoveAllListeners();
+        
+        //button.onClick.RemoveAllListeners();
     }
     
     public void SetRoomNameText(string text)

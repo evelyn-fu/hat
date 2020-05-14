@@ -15,7 +15,8 @@ public class LobbyNetwork : MonoBehaviour
     private void OnConnectedToMaster()
     {
         print("Connected to master.");
-        print("Nmae: " + PlayerNetwork.Instance.PlayerName);
+        PhotonNetwork.automaticallySyncScene = true;
+        print("Name: " + PlayerNetwork.Instance.PlayerName);
 
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
