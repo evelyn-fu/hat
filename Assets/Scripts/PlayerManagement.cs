@@ -25,7 +25,7 @@ public class PlayerManagement : MonoBehaviour
     public void ModifyHealth(PhotonPlayer photonPlayer, int value)
     {
         int index = PlayerStats.FindIndex(x => x.PhotonPlayer == photonPlayer);
-        if (index == -1)
+        if (index != -1)
         {
             PlayerStats playerStats = PlayerStats[index];
             playerStats.Health += value;

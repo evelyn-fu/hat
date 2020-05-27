@@ -11,6 +11,8 @@ public class ToxicArea : MonoBehaviour
 
         PhotonView photonView = other.GetComponent<PhotonView>();
         if (photonView != null)
+        {
             PlayerManagement.Instance.ModifyHealth(photonView.owner, -10);
+        }
     }
 }
