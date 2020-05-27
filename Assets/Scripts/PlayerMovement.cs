@@ -31,8 +31,8 @@ public class PlayerMovement : Photon.MonoBehaviour
         }
         else
         {
-            TargetRotation = (Quaternion)stream.ReceiveNext();
             TargetPosition = (Vector3)stream.ReceiveNext();
+            TargetRotation = (Quaternion)stream.ReceiveNext();
         }
     }
 
