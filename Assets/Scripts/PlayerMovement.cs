@@ -7,10 +7,16 @@ public class PlayerMovement : Photon.MonoBehaviour
     private PhotonView PhotonView;
     private Vector3 TargetPosition;
     private Quaternion TargetRotation;
+    bool isJumping = false;
+    public Camera cam;
 
     private void Awake()
     {
         PhotonView = GetComponent<PhotonView>();
+        if (!PhotonView.isMine)
+        {
+            cam.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -44,14 +50,31 @@ public class PlayerMovement : Photon.MonoBehaviour
 
     private void checkInput()
     {
-        float moveSpeed = 50f;
-        float rotateSpeed = 400f;
+        float moveSpeed = 25f;
+        float rotateSpeed = 200f;
 
         float vertical = Input.GetAxis("Vertical");
         float horizonal = Input.GetAxis("Horizontal");
 
         transform.position -= transform.forward * (vertical * moveSpeed * Time.deltaTime);
 
-        transform.Rotate(new Vector3(0, horizonal * rotateSpeed * Time.deltaTime, 0));
+        //transform.Rotate(new Vector3(0, horizonal * rotateSpeed * Time.deltaTime, 0));
+        transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + horizonal * rotateSpeed * Time.deltaTime, 0);
+
+        //jump
+        if (Input.GetKeyDown("space") && !isJumping)
+        {
+            isJumping = true;
+            GetComponent<Rigidbody>().AddForce(new Vector3(0, 8f, 0), ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "floor")
+        {
+            print("floor");
+            isJumping = false;
+        }
     }
 }
