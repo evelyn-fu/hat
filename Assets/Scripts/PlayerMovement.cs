@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class PlayerMovement : Photon.MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerMovement : Photon.MonoBehaviour
     private Vector3 TargetPosition;
     private Quaternion TargetRotation;
     bool isJumping = false;
+    bool hasHat = true;
     public Camera cam;
 
     private void Awake()
@@ -58,7 +60,6 @@ public class PlayerMovement : Photon.MonoBehaviour
 
         transform.position -= transform.forward * (vertical * moveSpeed * Time.deltaTime);
 
-        //transform.Rotate(new Vector3(0, horizonal * rotateSpeed * Time.deltaTime, 0));
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + horizonal * rotateSpeed * Time.deltaTime, 0);
 
         //jump
@@ -66,6 +67,15 @@ public class PlayerMovement : Photon.MonoBehaviour
         {
             isJumping = true;
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 8f, 0), ForceMode.Impulse);
+        }
+
+        //throw hat
+        if (Input.GetKeyDown(KeyCode.Q) && hasHat)
+        {
+            //hasHat = false;
+            transform.Find("Head/Hat").gameObject.SetActive(false);
+            GameObject newHat = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Hat"), transform.position-transform.forward*10f, transform.rotation, 0);
+            newHat.GetComponent<Rigidbody>().AddForce(-transform.forward * 10f, ForceMode.Impulse);
         }
     }
 
