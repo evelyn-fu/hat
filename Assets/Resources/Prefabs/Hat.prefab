@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4916625142895735110}
   m_Layer: 0
   m_Name: Hat
-  m_TagString: Untagged
+  m_TagString: hat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

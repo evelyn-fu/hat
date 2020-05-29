@@ -73,9 +73,9 @@ public class PlayerMovement : Photon.MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && hasHat)
         {
             //hasHat = false;
-            transform.Find("Head/Hat").gameObject.SetActive(false);
-            GameObject newHat = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Hat"), transform.position-transform.forward*10f, transform.rotation, 0);
-            newHat.GetComponent<Rigidbody>().AddForce(-transform.forward * 10f, ForceMode.Impulse);
+            PlayerManagement.Instance.ChangeHatState(photonView.owner, false);
+            GameObject newHat = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Hat"), transform.position-transform.forward*2f+transform.up*1f, transform.rotation, 0);
+            newHat.GetComponent<Rigidbody>().AddForce(-transform.forward * 50f, ForceMode.Impulse);
         }
     }
 
@@ -85,6 +85,10 @@ public class PlayerMovement : Photon.MonoBehaviour
         {
             print("floor");
             isJumping = false;
+        }
+        if(collision.gameObject.tag == "hat")
+        {
+            PlayerManagement.Instance.ModifyHealth(photonView.owner, -10);
         }
     }
 }
