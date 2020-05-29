@@ -92,10 +92,7 @@ public class PlayerNetwork : MonoBehaviour
         if (CurrentPlayer == null)
             return;
 
-        if (status)
-            CurrentPlayer.gameObject.transform.Find("Head/Hat").gameObject.SetActive(true);
-        else
-            CurrentPlayer.gameObject.transform.Find("Head/Hat").gameObject.SetActive(false);
+        CurrentPlayer.gameObject.transform.Find("Head/Hat").gameObject.SetActive(status);
     }
 
     [PunRPC]

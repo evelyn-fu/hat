@@ -83,11 +83,11 @@ public class PlayerMovement : Photon.MonoBehaviour
     {
         if (collision.gameObject.tag == "floor")
         {
-            print("floor");
             isJumping = false;
         }
         if(collision.gameObject.tag == "hat")
         {
+            print("hit");
             PlayerManagement.Instance.ModifyHealth(photonView.owner, -10);
         }
     }
