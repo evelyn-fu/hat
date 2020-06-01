@@ -41,6 +41,7 @@ public class HatMovement : Photon.MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
+        if(gameObject != null)
+            Destroy(gameObject);
     }
 }

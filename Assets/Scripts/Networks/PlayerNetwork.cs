@@ -66,11 +66,6 @@ public class PlayerNetwork : MonoBehaviour
         }
     }
 
-    public void NewHatStatus(PhotonPlayer photonPlayer, bool status)
-    {
-        PhotonView.RPC("RPC_NewHatStatus", photonPlayer, status);
-    }
-
     public void NewHealth(PhotonPlayer photonPlayer, int health)
     {
         PhotonView.RPC("RPC_NewHealth", photonPlayer, health);
@@ -86,14 +81,6 @@ public class PlayerNetwork : MonoBehaviour
             PhotonNetwork.Destroy(CurrentPlayer.gameObject);
     }
 
-    [PunRPC]
-    private void RPC_NewHatStatus(bool status)
-    {
-        if (CurrentPlayer == null)
-            return;
-
-        CurrentPlayer.gameObject.transform.Find("Head/Hat").gameObject.SetActive(status);
-    }
 
     [PunRPC]
     private void RPC_CreatePlayer()

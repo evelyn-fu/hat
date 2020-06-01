@@ -32,17 +32,6 @@ public class PlayerManagement : MonoBehaviour
             PlayerNetwork.Instance.NewHealth(photonPlayer, playerStats.Health);
         }
     }
-
-    public void ChangeHatState(PhotonPlayer photonPlayer, bool state)
-    {
-        int index = PlayerStats.FindIndex(x => x.PhotonPlayer == photonPlayer);
-        if (index != -1)
-        {
-            PlayerStats playerStats = PlayerStats[index];
-            playerStats.Hat = state;
-            PlayerNetwork.Instance.NewHatStatus(photonPlayer, playerStats.Hat);
-        }
-    }
 }
 public class PlayerStats
 {
