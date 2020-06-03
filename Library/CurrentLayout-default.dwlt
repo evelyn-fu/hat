@@ -111,8 +111,8 @@ MonoBehaviour:
     y: 30
     width: 1266
     height: 582
-  m_MinSize: {x: 685, y: 494}
-  m_MaxSize: {x: 14006, y: 14044}
+  m_MinSize: {x: 681, y: 494}
+  m_MaxSize: {x: 14002, y: 14044}
   vertical: 0
   controlID: 54
 --- !u!114 &6
@@ -385,7 +385,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: a0e9ffffcce9ffff32ebffff3eebffffd6eeffff02efffff68f0ffff74f0ffffb0f4ffffdcf4ffff3ef6ffff52f6ffff78fbffff
+      m_ExpandedIDs: b2d8ffffded8ffff44daffff50dafffff2ddffff1edeffff84dfffff90dfffff10e3ffff3ce3ffffa2e4ffffaee4ffff3ae9ffff66e9ffffcceaffffd8eaffff64eeffff90eefffff6efffff02f0ffffcef3fffffaf3ffff64f5ffff74f5ffff06f9ffff32f9ffff98faffffa4faffff78fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -637,20 +637,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 57
   m_LastFolders:
-  - Assets/Resources/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: 57
   m_LastProjectPath: C:\Users\Evelyn\Desktop\VR Stuff\hat
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 51}
-    m_SelectedIDs: a6350000
-    m_LastClickedID: 13734
-    m_ExpandedIDs: 00000000382e0000de340000fe350000783900007a39000000ca9a3b
+    scrollPos: {x: 0, y: 147}
+    m_SelectedIDs: d4310000
+    m_LastClickedID: 12756
+    m_ExpandedIDs: 00000000382e0000d4310000de340000783900007a39000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

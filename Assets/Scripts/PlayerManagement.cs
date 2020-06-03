@@ -32,6 +32,17 @@ public class PlayerManagement : MonoBehaviour
             PlayerNetwork.Instance.NewHealth(photonPlayer, playerStats.Health);
         }
     }
+
+    public int getHealth(PhotonPlayer photonPlayer)
+    {
+        int index = PlayerStats.FindIndex(x => x.PhotonPlayer == photonPlayer);
+        if (index != -1)
+        {
+            PlayerStats playerStats = PlayerStats[index];
+            return playerStats.Health;
+        }
+        else return -1;
+    }
 }
 public class PlayerStats
 {

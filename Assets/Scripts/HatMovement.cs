@@ -7,10 +7,12 @@ public class HatMovement : Photon.MonoBehaviour
     private PhotonView PhotonView;
     private Vector3 TargetPosition;
     private Quaternion TargetRotation;
+    private Vector3 startPosition;
     // Start is called before the first frame update
     private void Awake()
     {
         PhotonView = GetComponent<PhotonView>();
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -41,7 +43,6 @@ public class HatMovement : Photon.MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(gameObject != null)
-            Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
