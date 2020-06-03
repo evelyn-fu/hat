@@ -137,6 +137,7 @@ public class PlayerMovement : Photon.MonoBehaviour
             hp -= 10;
             print("health: "+hp);
             hittable = false;
+            
         }
     }
 }

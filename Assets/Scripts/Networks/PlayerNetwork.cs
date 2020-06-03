@@ -78,7 +78,9 @@ public class PlayerNetwork : MonoBehaviour
             return;
 
         if (health <= 0)
+        {
             PhotonNetwork.Destroy(CurrentPlayer.gameObject);
+        }
     }
 
 
